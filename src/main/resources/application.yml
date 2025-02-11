@@ -1,0 +1,55 @@
+server:
+  tomcat:
+    internal-proxies: .*
+    connection-timeout: 60s
+    max-connections: 20
+    accept-count: 20
+    threads:
+      max: 20
+    remoteip:
+      internal-proxies: .*
+  forward-headers-strategy: framework
+  port: 8081
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+  jackson:
+    default-property-inclusion: non_null
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/finance_play
+    username: finance_play
+    password: finance_play
+  jpa:
+    open-in-view: false
+  flyway:
+    sql-migration-prefix: V
+    enabled: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  application:
+    name: finance-play-api
+
+finance-play:
+  wallet:
+    default:
+      name: "Carteira"
+      color: "FFFF00"
+    limit:
+      free: 2
+  revenue-category:
+    default:
+      name: "Receitas"
+      color: "00FF00"
+    limit:
+      free: 5
+  expense-category:
+    default:
+      name: "Despesas"
+      color: "FF0000"
+    limit:
+      free: 5
